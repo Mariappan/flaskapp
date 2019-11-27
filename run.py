@@ -1,0 +1,2 @@
+from flashapp import app
+
