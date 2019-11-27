@@ -1,5 +1,6 @@
 import functools
-from flask import render_template, Flask, send_from_directory
+import uuid
+from flask import render_template, Flask, send_from_directory, jsonify
 
 from flashapp.config import APP_STATIC
 from flashapp.debug import trace_print, debug_print
@@ -46,6 +47,16 @@ def _index():
 @routes("/hello", "hello", methods=["GET", "POST"])
 def _hello():
     return f"Hello, World!"
+
+
+@routes("/uuid", "uuid")
+def _uuid():
+    return render_template("uuid.htm", title="UUID")
+
+
+@routes("/generate_uuid", "uuid_gen", methods=["POST"])
+def _generate_uuid():
+    return jsonify({"uuid": uuid.uuid4()})
 
 
 def add_routes(app: Flask):

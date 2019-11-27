@@ -11,3 +11,10 @@ h1 {
   font-family: monospace;
   font-size: 20px;
 }
+
+.uuidText {
+  color: mediumblue;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 20px;
+}
