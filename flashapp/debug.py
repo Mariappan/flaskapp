@@ -1,5 +1,3 @@
-
-
 def debug_print(*args, **kwargs):
     if False:
         print(*args, **kwargs)
