@@ -1,6 +1,7 @@
 import functools
-from flask import render_template, Flask
+from flask import render_template, Flask, send_from_directory
 
+from flashapp.config import APP_STATIC
 from flashapp.debug import trace_print, debug_print
 
 trace_print(f"Importing app/routes")
@@ -25,6 +26,11 @@ def routes(rule, endpoint, methods=None):
         return decorated
 
     return decorator
+
+
+@routes('/favicon.ico', 'favicon.ico')
+def favicon():
+    return send_from_directory(APP_STATIC, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @routes('/', 'index')

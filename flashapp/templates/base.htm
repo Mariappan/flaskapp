@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Purposeless App</title>
+        {% else %}
+        <title>Welcome to Purposeless App!</title>
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="static/css/base.css">
+    </head>
+    <body>
+        {% block bodycontent %}{% endblock %}
+    </body>
+</html>
