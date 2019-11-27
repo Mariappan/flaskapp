@@ -2,13 +2,16 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Purposeless App</title>
+        <title>{{ title }} - PurposeLess App</title>
         {% else %}
         <title>Welcome to Purposeless App!</title>
         {% endif %}
         <link rel="stylesheet" type="text/css" href="static/css/base.css">
     </head>
     <body>
+        <h1>Purposeless App</h1>
+        <div class="nav"><a href="/index">Home</a></div>
+        <hr>
         {% block bodycontent %}{% endblock %}
     </body>
 </html>
