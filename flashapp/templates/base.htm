@@ -6,52 +6,29 @@
         {% else %}
         <title>Welcome to Purposeless App!</title>
         {% endif %}
-
         <link rel="stylesheet" type="text/css" href="static/css/base.css">
-
-        <script>
-            async function postData(url = '', data = {}) {
-                // Default options are marked with *
-                const response = await fetch(url, {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    mode: 'cors', // no-cors, *cors, same-origin
-                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                    credentials: 'same-origin', // include, *same-origin, omit
-                    headers: {
-                        'Content-Type': 'application/json'
-                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    redirect: 'follow', // manual, *follow, error
-                    referrer: 'no-referrer', // no-referrer, *client
-                    body: JSON.stringify(data) // body data type must match "Content-Type" header
-                });
-                return await response.json(); // parses JSON response into native JavaScript objects
-            }
-
-            async function generate_uuid4() {
-                const uuid_obj = await postData('/generate_uuid', { name: "maari" })
-                document.getElementById("uuidText").innerHTML = uuid_obj.uuid;
-            }
-        </script>
+        <script type="text/javascript" src="static/js/uuid.js"></script>
     </head>
-
     <body>
-        <h1>Purposeless App</h1>
-        <div class="nav">
-            <a href="/index">Home</a>
-            <a href="/uuid">UUID</a>
-            <a href="/members">Members</a>
-        </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        {% block bodycontent %}{% endblock %}
+        <header>
+            <h1>Purposeless App</h1>
+            <div class="nav">
+                <a href="/index">Home</a>
+                <a href="/uuid">UUID</a>
+                <a href="/members">Members</a>
+            </div>
+        </header>
+        <main class="container">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            {% block bodycontent %}{% endblock %}
+        </main>
     </body>
 </html>
