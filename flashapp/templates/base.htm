@@ -40,8 +40,18 @@
         <div class="nav">
             <a href="/index">Home</a>
             <a href="/uuid">UUID</a>
+            <a href="/members">Members</a>
         </div>
         <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         {% block bodycontent %}{% endblock %}
     </body>
 </html>

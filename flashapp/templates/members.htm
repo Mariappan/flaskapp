@@ -1,0 +1,45 @@
+{% extends "base.htm" %}
+
+{% block bodycontent %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.name }}</td>
+            <td>{{ member.age }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+
+<!--    <form action="" method="post">-->
+<!--        {{ form.hidden_tag() }}-->
+<!--        <label>Name</label>-->
+<!--        <input type="text" name="member_name" placeholder="Enter your nane here">-->
+<!--        <label>Age</label>-->
+<!--        <input type="number" name="age">-->
+<!--        <input type="submit">-->
+<!--    </form>-->
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.member_name.label }}<br>
+            {{ form.member_name(size=32) }}
+        </p>
+        <p>
+            {{ form.age.label }}<br>
+            {{ form.age() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

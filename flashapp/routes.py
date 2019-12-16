@@ -1,9 +1,13 @@
-import functools
 import uuid
-from flask import render_template, Flask, send_from_directory, jsonify
+from dataclasses import dataclass
 
+from flask import render_template, Flask, send_from_directory, jsonify, flash
+from werkzeug.utils import redirect
+
+from flashapp import Member
 from flashapp.config import APP_STATIC
 from flashapp.debug import trace_print, debug_print
+from flashapp.forms import MemberForm
 from flashapp.utils import routes
 
 import flashapp.temp_routes
@@ -40,7 +44,33 @@ def _generate_uuid():
     return jsonify({"uuid": uuid.uuid4()})
 
 
-def add_routes(app: Flask):
+@dataclass
+class _Members:
+    name: str
+    age: int
+
+
+m = _Members("Maari", 30)
+s = _Members("Safia", 25)
+DB = None
+
+
+@routes("/members", "members", methods=["GET", "POST"])
+def _members():
+    form = MemberForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.member_name.data, form.age.data))
+        member = Member(member_name=form.member_name.data, age=form.age.data)
+        DB.session.add(member)
+        DB.session.commit()
+        return redirect('/members')
+    return render_template('members.htm', title='Members', form=form, members=[m, s])
+
+
+def add_routes(app: Flask, db):
+    global DB
+    DB = db
     for route in routes.all:
         debug_print(f"Adding route: {route}")
         *route, methods = route

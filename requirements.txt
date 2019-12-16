@@ -1,2 +1,4 @@
 black
 flask
+flask-wtf
+flask-sqlalchemy

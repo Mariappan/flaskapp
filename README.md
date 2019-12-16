@@ -7,7 +7,7 @@ Sample flask app with no specific purpose
 To run the app,
 
 ```bash
-export FLASKAPP=run.py
+export FLASK_APP=run.py
 flask run
 ```
 
@@ -16,6 +16,6 @@ flask run
 To dump all the routes:
 
 ```bash
-export FLASKAPP=run.py
+export FLASK_APP=run.py
 flask routes
 ```
