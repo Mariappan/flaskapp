@@ -4,5 +4,5 @@ def debug_print(*args, **kwargs):
 
 
 def trace_print(*args, **kwargs):
-    if False:
+    if True:
         print(*args, **kwargs)

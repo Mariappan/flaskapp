@@ -5,5 +5,5 @@ from wtforms.validators import DataRequired
 
 class MemberForm(FlaskForm):
     member_name = StringField('Name', validators=[DataRequired()])
-    age = IntegerField('Age', validators=[DataRequired()])
+    member_age = IntegerField('Age', validators=[DataRequired()])
     submit = SubmitField('Add')

@@ -12,8 +12,8 @@
         <tbody>
         {% for member in members %}
         <tr>
-            <td>{{ member.name }}</td>
-            <td>{{ member.age }}</td>
+            <td>{{ member.member_name }}</td>
+            <td>{{ member.member_age }}</td>
         </tr>
         {% endfor %}
         </tbody>
@@ -21,25 +21,16 @@
 
     <br>
 
-<!--    <form action="" method="post">-->
-<!--        {{ form.hidden_tag() }}-->
-<!--        <label>Name</label>-->
-<!--        <input type="text" name="member_name" placeholder="Enter your nane here">-->
-<!--        <label>Age</label>-->
-<!--        <input type="number" name="age">-->
-<!--        <input type="submit">-->
-<!--    </form>-->
-
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>
+        <div>
             {{ form.member_name.label }}<br>
             {{ form.member_name(size=32) }}
-        </p>
-        <p>
-            {{ form.age.label }}<br>
-            {{ form.age() }}
-        </p>
+        </div>
+        <div>
+            {{ form.member_age.label }}<br>
+            {{ form.member_age() }}
+        </div>
         <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}
